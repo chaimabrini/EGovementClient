@@ -59,7 +59,7 @@ public class SendingClaim extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "Sending claim", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 0, 398, 262);
+		panel.setBounds(10, 0, 414, 262);
 		contentPane.add(panel);
 		
 		JLabel label = new JLabel("Subject");
