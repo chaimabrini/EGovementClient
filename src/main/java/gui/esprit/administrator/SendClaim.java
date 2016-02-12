@@ -1,6 +1,7 @@
 package gui.esprit.administrator;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ public class SendClaim extends JFrame {
 	Claim claim =new Claim();
 
 	MainMenu main=new MainMenu();
+	private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -139,6 +141,11 @@ public class SendClaim extends JFrame {
 		JLabel lblNewLabel_8 = new JLabel("New label");
 		lblNewLabel_8.setBounds(636, 26, 46, 14);
 		contentPane.add(lblNewLabel_8);
+		
+		textField = new JTextField();
+		textField.setOpaque(false);
+		textField.setBounds(471, 155, 345, 37);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	}
-
 }

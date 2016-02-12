@@ -39,7 +39,7 @@ public class MainMenu extends JFrame {
 	 */
 	public MainMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1035, 644);
+		setBounds(100, 100, 1053, 644);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
