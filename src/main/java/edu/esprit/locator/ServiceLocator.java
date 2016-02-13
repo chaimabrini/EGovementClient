@@ -9,8 +9,9 @@ import javax.naming.InitialContext;
 
 public class ServiceLocator {
 	private static ServiceLocator instance;
-	private Context context;
-    private Map<String, Object> cache;
+	private static Context context;
+	// feha proxy w proxy lezim ykoun mawjoud une seule fois hadeka 3lech static 
+    private static Map<String, Object> cache;
 	
 	private ServiceLocator(){
 		cache = new HashMap<String,Object>();
@@ -27,9 +28,10 @@ public class ServiceLocator {
 		}
 		return instance;
 	}
-	
-	public Object getProxy(String jndi){
+	//
+	public static Object getProxy(String jndi){
 		Object proxy=null;
+		
 		proxy=cache.get(jndi);
 		if(proxy!=null){
 			return proxy;
