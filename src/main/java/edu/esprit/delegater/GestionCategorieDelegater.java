@@ -17,19 +17,19 @@ private static final String jndi = "E-Goverment/GestionCategorie!edu.esprit.serv
 	}
 
 	
-	public Boolean doAddCategorie(Categorie categorie){
+	public static Boolean doAddCategorie(Categorie categorie){
 		return getProxy().addCategorie(categorie);
 	}
-	public Boolean doDeleteCategorie(Categorie categorie){
+	public static Boolean doDeleteCategorie(Categorie categorie){
 		return getProxy().deleteCategorie(categorie);
 	}
-	public Boolean doUpdateCategorie(Categorie categorie){
+	public static Boolean doUpdateCategorie(Categorie categorie){
 		return getProxy().updateCategorie(categorie);
 	}
-	public Categorie doFindCategorieByName(String name){
+	public static Categorie doFindCategorieByName(String name){
 		return getProxy().findCategorieByName(name);
 	}
-	public List<Categorie> doFindAllCategorie(){
+	public static List<Categorie> doFindAllCategorie(){
 		return getProxy().findAllCategorie();
 	}
 	

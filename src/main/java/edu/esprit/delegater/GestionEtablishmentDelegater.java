@@ -2,6 +2,8 @@ package edu.esprit.delegater;
 
 import java.util.List;
 
+import edu.esprit.domain.Agent;
+import edu.esprit.domain.Employee;
 import edu.esprit.domain.Etablishment;
 import edu.esprit.locator.ServiceLocator;
 import edu.esprit.services.gestion.etablishment.GestionEtablishmentRemote;
@@ -31,4 +33,5 @@ public class GestionEtablishmentDelegater {
 	public static Etablishment doFindAllEtablishmentByName(String name) {
 		return getProxy().findEtablishmentByName(name);
 	}
+
 }

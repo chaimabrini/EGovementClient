@@ -86,7 +86,10 @@ public class MyClaim extends JFrame {
 			}
 		});
 		
-		scrollPane.setViewportView(table);
+		JLabel image = new JLabel("");
+		image.setBounds(0, 0, 893, 600);
+		image.setIcon(new ImageIcon("C:\\Users\\FBI\\Desktop\\PIDEV\\SPRINT 1\\MyClaims.jpg"));
+		contentPane.add(image);
 		
 		JLabel homeMenu = new JLabel("");
 		homeMenu.setBounds(291, 47, 80, 37);
@@ -125,6 +128,7 @@ public class MyClaim extends JFrame {
 		contentPane.add(serviceReqMenu);
 		
 		JLabel claimMenu = new JLabel("");
+		claimMenu.setBounds(699, 47, 46, 14);
 		claimMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -134,7 +138,6 @@ public class MyClaim extends JFrame {
 			
 			}
 		});
-		claimMenu.setBounds(699, 47, 80, 37);
 		contentPane.add(claimMenu);
 		
 		

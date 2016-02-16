@@ -35,4 +35,9 @@ public class GestionEmployeeDelegater {
 		return getProxy().FindAllEmployeeById(id);
 	}
 	
+	
+	public static Employee doAuthentificate(String login,String pwd){
+		return getProxy().authentificate(login, pwd);
+	}
+	
 }

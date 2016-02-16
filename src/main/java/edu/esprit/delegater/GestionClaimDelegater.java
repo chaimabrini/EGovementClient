@@ -10,9 +10,10 @@ import edu.esprit.services.gestion.claim.*;
 
 public class GestionClaimDelegater {
 	private static final String jndi = "E-Goverment/GestionClaim!edu.esprit.services.gestion.claim.GestionClaimRemote";
-
+	
 	private static GestionClaimRemote getProxy() {
-		return (GestionClaimRemote) ServiceLocator.getInstance().getProxy(jndi);
+		ServiceLocator.getInstance();
+		return (GestionClaimRemote) ServiceLocator.getProxy(jndi);
 	}
 
 	public static Boolean doAddClaim(Claim claim){
