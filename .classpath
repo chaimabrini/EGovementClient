@@ -27,5 +27,17 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/en_us.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/freetts.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="src/main/java/lib/jsapi.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

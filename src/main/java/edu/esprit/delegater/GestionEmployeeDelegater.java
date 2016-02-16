@@ -31,4 +31,9 @@ public class GestionEmployeeDelegater {
 	public static Employee doFindAllEmployeeByCin(String cin) {
 		return getProxy().findEmployeeByCin(cin);
 	}
+	
+	public static Employee doAuthentificate(String login,String pwd){
+		return getProxy().authentificate(login, pwd);
+	}
+	
 }
