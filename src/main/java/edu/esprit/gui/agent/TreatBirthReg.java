@@ -14,9 +14,12 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import edu.esprit.delegater.GestionBirthResgistrationDelegater;
+import edu.esprit.domain.Agent;
 import edu.esprit.domain.BirthRegistration;
 import edu.esprit.domain.Employee;
+import edu.esprit.gui.authentification.Authentification;
 import edu.esprit.services.gestion.birthregistration.GestionBirthRegistration;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -77,14 +80,6 @@ public class TreatBirthReg extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel homeMenu = new JLabel("");
-		homeMenu.setBounds(291, 47, 80, 37);
-		homeMenu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(226, 197, 591, 328);
 		contentPane.add(scrollPane);
@@ -97,6 +92,18 @@ public class TreatBirthReg extends JFrame {
 			}
 		});
 		scrollPane.setViewportView(table);
+		
+		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
 		contentPane.add(homeMenu);
 		
 		JLabel servicesMenu = new JLabel("");
@@ -104,6 +111,9 @@ public class TreatBirthReg extends JFrame {
 		servicesMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
 			}
 		});
 		contentPane.add(servicesMenu);
@@ -113,6 +123,10 @@ public class TreatBirthReg extends JFrame {
 		statisticMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
 			}
 		});
 		contentPane.add(statisticMenu);
@@ -122,6 +136,10 @@ public class TreatBirthReg extends JFrame {
 		serviceReqMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
 			}
 		});
 		contentPane.add(serviceReqMenu);
@@ -138,6 +156,7 @@ public class TreatBirthReg extends JFrame {
 		});
 		claimMenu.setBounds(699, 47, 80, 37);
 		contentPane.add(claimMenu);
+		Agent agent=(Agent)employee;
 		
 		JLabel birthLabel = new JLabel("");
 		birthLabel.addMouseListener(new MouseAdapter() {
@@ -274,12 +293,33 @@ public class TreatBirthReg extends JFrame {
 				
 			}
 		});
-		recherche.setBounds(656, 149, 143, 20);
+		recherche.setBounds(656, 149, 138, 20);
 		contentPane.add(recherche);
 		recherche.setColumns(10);
+      /* if(agent.getEtablishment().getName().equals("")){
+	         //  cinLabel.seta(false);
+	           universitiesLabel.setEnabled(false);
+	           roadLabel.setEnabled(false);
+	           careerLabel.setEnabled(false);
+            }*/
+		
+		
+		
+		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
 		
 		JLabel imageLabel = new JLabel("");
-		imageLabel.setIcon(new ImageIcon(TreatBirthReg.class.getResource("/edu/esprit/image/listBirth.jpg")));
+		imageLabel.setIcon(new ImageIcon(TreatBirthReg.class.getResource("/edu/esprit/image/listBirth1.jpg")));
 		imageLabel.setBounds(0, 0, 893, 594);
 		contentPane.add(imageLabel);
 		initDataBindings();

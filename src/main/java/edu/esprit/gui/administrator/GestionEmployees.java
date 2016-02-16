@@ -44,7 +44,7 @@ public class GestionEmployees extends JFrame {
 	private JPasswordField pwd;
 	private JLabel delete;
 	private JLabel add;
-
+    static Employee employee;
 	public List<Employee> employees;
 	public List<Etablishment> establishments;
 
@@ -52,7 +52,8 @@ public class GestionEmployees extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GestionEmployees frame = new GestionEmployees();
+					GestionEmployees frame = new GestionEmployees(employee);
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,8 +65,8 @@ public class GestionEmployees extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GestionEmployees() {
-
+	public GestionEmployees(Employee e) {
+        employee=e;
 		// init list
 		employees = new ArrayList<Employee>();
 		employees = GestionEmployeeDelegater.doFindAllEmployee();
@@ -112,6 +113,63 @@ public class GestionEmployees extends JFrame {
 		});
 		scrollPane.setViewportView(table);
 
+		JLabel homeMenu = new JLabel("");
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAdmin homeA=new HomeAdmin(employee);
+				setVisible(false);
+				homeA.setVisible(true);
+			}
+		});
+		homeMenu.setBounds(284, 42, 89, 37);
+		contentPane.add(homeMenu);
+		
+		JLabel establishmentMenu = new JLabel("");
+		establishmentMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		establishmentMenu.setBounds(377, 42, 72, 37);
+		contentPane.add(establishmentMenu);
+		JLabel categoryMenu = new JLabel("");
+		categoryMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   ManageCategories manageCat=new ManageCategories(employee);
+			   setVisible(false);
+			   manageCat.setVisible(true);
+			}
+		});
+		categoryMenu.setBounds(453, 42, 80, 38);
+		contentPane.add(categoryMenu);
+		
+		JLabel employeeMenu = new JLabel("");
+		employeeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionEmployees gestionEmp =new GestionEmployees(employee);
+				setVisible(false);
+				gestionEmp.setVisible(true);
+			}
+		});
+		employeeMenu.setBounds(540, 42, 72, 37);
+		contentPane.add(employeeMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAdmin statisticAdm=new StatisticAdmin(employee);
+				setVisible(false);
+				statisticAdm.setVisible(true);
+			}
+		});
+		statisticMenu.setBounds(622, 42, 72, 37);
+		contentPane.add(statisticMenu);
+		
+		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(GestionEmployees.class.getResource("/edu/esprit/image/Employees.jpg")));
 		lblNewLabel.setBounds(0, 0, 894, 600);
@@ -128,6 +186,8 @@ public class GestionEmployees extends JFrame {
 		pwd.setBorder(null);
 		contentPane.add(pwd);
 
+		
+		
 		// Update
 		JLabel update = new JLabel("New label");
 		update.addMouseListener(new MouseAdapter() {
@@ -184,36 +244,13 @@ public class GestionEmployees extends JFrame {
 		add.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				new AddEmployee().setVisible(true);
+				setVisible(false);
+				new AddEmployee(employee).setVisible(true);
 
 			}
 		});
 		add.setBounds(607, 515, 125, 47);
 		contentPane.add(add);
-
-		JLabel Home = new JLabel("New label");
-		Home.setBounds(287, 41, 81, 47);
-		contentPane.add(Home);
-
-		JLabel Establishment = new JLabel("New label");
-		Establishment.setBounds(378, 41, 73, 47);
-		contentPane.add(Establishment);
-
-		JLabel Category = new JLabel("New label");
-		Category.setBounds(454, 41, 78, 47);
-		contentPane.add(Category);
-
-		JLabel Employee = new JLabel("New label");
-		Employee.setBounds(534, 40, 81, 48);
-		contentPane.add(Employee);
-
-		JLabel statistic = new JLabel("New label");
-		statistic.setBounds(620, 41, 81, 47);
-		contentPane.add(statistic);
-
-		JLabel claim = new JLabel("New label");
-		claim.setBounds(704, 41, 81, 47);
-		contentPane.add(claim);
 		initDataBindings();
 
 	}

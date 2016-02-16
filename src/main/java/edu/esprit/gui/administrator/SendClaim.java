@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.esprit.delegater.GestionClaimDelegater;
 import edu.esprit.domain.Claim;
+import edu.esprit.domain.Employee;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -24,8 +25,8 @@ public class SendClaim extends JFrame {
 	private JTextField subject;
 	private JTextField mail;
 	Claim claim =new Claim();
+    static Employee employee;
 
-	MainMenu main=new MainMenu();
 	private JTextField textField;
 	/**
 	 * Launch the application.
@@ -34,7 +35,7 @@ public class SendClaim extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SendClaim frame = new SendClaim();
+					SendClaim frame = new SendClaim(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +47,8 @@ public class SendClaim extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SendClaim() {
+	public SendClaim(Employee e) {
+		employee=e;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1051, 670);
 		contentPane = new JPanel();
@@ -118,7 +120,7 @@ public class SendClaim extends JFrame {
 		home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				MainMenu main=new MainMenu(employee);
 				hide();
 				main.show();
 			}

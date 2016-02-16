@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +18,11 @@ import edu.esprit.delegater.GestionCinRequestDelegater;
 import edu.esprit.domain.Agent;
 import edu.esprit.domain.CinRequest;
 import edu.esprit.domain.Employee;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 
@@ -66,6 +70,72 @@ public class CinRequestRequest extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
+		contentPane.add(homeMenu);
+		
+		JLabel servicesMenu = new JLabel("");
+		servicesMenu.setBounds(374, 47, 80, 37);
+		servicesMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
+			}
+		});
+		contentPane.add(servicesMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.setBounds(461, 47, 72, 37);
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
+			}
+		});
+		contentPane.add(statisticMenu);
+		
+		JLabel serviceReqMenu = new JLabel("");
+		serviceReqMenu.setBounds(543, 46, 152, 38);
+		serviceReqMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
+			}
+		});
+		contentPane.add(serviceReqMenu);
+		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageClaim mClaim=new ManageClaim();
+				hide();
+				mClaim.show();
+			
+			}
+		});
+		claimMenu.setBounds(699, 47, 80, 37);
+		contentPane.add(claimMenu);
+		
+		
+		
 		JLabel birthLabel = new JLabel("");
 		birthLabel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -76,7 +146,7 @@ public class CinRequestRequest extends JFrame {
 				
 			}
 		});
-		birthLabel.setBounds(21, 197, 114, 51);
+		birthLabel.setBounds(20, 217, 114, 51);
 		contentPane.add(birthLabel);
 		
 		JLabel cinLabel = new JLabel("");
@@ -89,7 +159,7 @@ public class CinRequestRequest extends JFrame {
 				
 			}
 		});
-		cinLabel.setBounds(21, 259, 114, 51);
+		cinLabel.setBounds(20, 279, 114, 51);
 		contentPane.add(cinLabel);
 		
 		JLabel universitiesLabel = new JLabel("");
@@ -101,7 +171,7 @@ public class CinRequestRequest extends JFrame {
 				univerReq.show();
 			}
 		});
-		universitiesLabel.setBounds(21, 321, 114, 51);
+		universitiesLabel.setBounds(20, 341, 114, 51);
 		contentPane.add(universitiesLabel);
 		
 		JLabel roadLabel = new JLabel("");
@@ -113,7 +183,7 @@ public class CinRequestRequest extends JFrame {
 				roadReq.show();
 			}
 		});
-		roadLabel.setBounds(21, 383, 114, 51);
+		roadLabel.setBounds(20, 403, 114, 51);
 		contentPane.add(roadLabel);
 		
 		JLabel careerLabel = new JLabel("");
@@ -125,8 +195,91 @@ public class CinRequestRequest extends JFrame {
 				careerReq.show();
 			}
 		});
-		careerLabel.setBounds(21, 445, 114, 51);
+		careerLabel.setBounds(20, 465, 114, 51);
 		contentPane.add(careerLabel);
+		JLabel birthExplabel = new JLabel("");
+		birthExplabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)  {
+				
+				byte[] bAvatar = cinRequest.getResidenceCertificate();
+				int i=1;
+				String namefile="";
+				try{
+					 namefile="C:/temp/birthReExp"+i+".jpg";
+				    FileOutputStream fos = new FileOutputStream(namefile); 
+				    fos.write(bAvatar);
+				    fos.close();
+				    i++;
+				}catch(Exception e1){
+				    e1.printStackTrace();
+				}
+				
+		        JOptionPane.showMessageDialog(contentPane, "the file is download you will find it in"+namefile);
+				
+			}
+		});
+		
+
+        birthExplabel.setBounds(342, 217, 48, 35);
+	    contentPane.add(birthExplabel);
+		
+	    JLabel residenceLabel = new JLabel("");
+	    residenceLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)  {
+				
+				byte[] bAvatar = cinRequest.getResidenceCertificate();
+				int i=1;
+				String namefile="";
+				try{
+					 namefile="C:/temp/ResidenceCertificate"+i+".jpg";
+				    FileOutputStream fos = new FileOutputStream(namefile); 
+				    fos.write(bAvatar);
+				    fos.close();
+				    i++;
+				}catch(Exception e1){
+				    e1.printStackTrace();
+				}
+				
+		        JOptionPane.showMessageDialog(contentPane, "the file is download you will find it in"+namefile);
+				
+			}
+		});
+		
+
+	    residenceLabel.setBounds(599, 211, 48, 41);
+	    contentPane.add(residenceLabel);
+	    
+	    
+	    JLabel photoIdLabel = new JLabel("");
+	    photoIdLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)  {
+				
+				byte[] bAvatar = cinRequest.getPhotoId();
+				int i=1;
+				String namefile="";
+				try{
+					 namefile="C:/temp/photoId"+i+".jpg";
+				    FileOutputStream fos = new FileOutputStream(namefile); 
+				    fos.write(bAvatar);
+				    fos.close();
+				    i++;
+				}catch(Exception e1){
+				    e1.printStackTrace();
+				}
+				
+		        JOptionPane.showMessageDialog(contentPane, "the file is download you will find it in"+namefile);
+				
+			}
+		});
+		
+
+	    photoIdLabel.setBounds(599, 211, 48, 41);
+	    contentPane.add(photoIdLabel);
+		
+		
 		
 		JTextArea responsetext = new JTextArea();
 		responsetext.setBounds(223, 332, 573, 174);
@@ -159,16 +312,26 @@ public class CinRequestRequest extends JFrame {
 		birthExecptLabel.setBounds(342, 217, 28, 20);
 		contentPane.add(birthExecptLabel);
 		
-		JLabel residenceLabel = new JLabel("");
-		residenceLabel.setBounds(599, 217, 34, 20);
-		contentPane.add(residenceLabel);
+		
 		
 		JLabel photoIdlabel = new JLabel("");
 		photoIdlabel.setBounds(767, 211, 29, 20);
 		contentPane.add(photoIdlabel);
 		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
+		
 		JLabel imagelabel = new JLabel("");
-		imagelabel.setIcon(new ImageIcon(CinRequestRequest.class.getResource("/edu/esprit/image/CINRequest.jpg")));
+		imagelabel.setIcon(new ImageIcon(CinRequestRequest.class.getResource("/edu/esprit/image/CINRequest1.jpg")));
 		imagelabel.setBounds(0, 0, 893, 600);
 		contentPane.add(imagelabel);
 	}

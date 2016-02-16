@@ -20,6 +20,8 @@ import edu.esprit.delegater.GestionRoadTaxServiceDelegater;
 import edu.esprit.domain.CareerObjectiveService;
 import edu.esprit.domain.Employee;
 import edu.esprit.domain.RoadTaxService;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -76,14 +78,6 @@ public class TreatCareerObjReq extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel homeMenu = new JLabel("");
-		homeMenu.setBounds(291, 47, 80, 37);
-		homeMenu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(223, 197, 595, 331);
 		contentPane.add(scrollPane);
@@ -96,6 +90,18 @@ public class TreatCareerObjReq extends JFrame {
 			}
 		});
 		scrollPane.setViewportView(table);
+		
+		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
 		contentPane.add(homeMenu);
 		
 		JLabel servicesMenu = new JLabel("");
@@ -103,6 +109,9 @@ public class TreatCareerObjReq extends JFrame {
 		servicesMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
 			}
 		});
 		contentPane.add(servicesMenu);
@@ -112,6 +121,10 @@ public class TreatCareerObjReq extends JFrame {
 		statisticMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
 			}
 		});
 		contentPane.add(statisticMenu);
@@ -121,6 +134,10 @@ public class TreatCareerObjReq extends JFrame {
 		serviceReqMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
 			}
 		});
 		contentPane.add(serviceReqMenu);
@@ -137,6 +154,7 @@ public class TreatCareerObjReq extends JFrame {
 		});
 		claimMenu.setBounds(699, 47, 80, 37);
 		contentPane.add(claimMenu);
+		
 		
 		JLabel birthLabel = new JLabel("");
 		birthLabel.addMouseListener(new MouseAdapter() {
@@ -273,8 +291,20 @@ public class TreatCareerObjReq extends JFrame {
 		contentPane.add(recherche);
 		recherche.setColumns(10);
 		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
+		
 		JLabel imagelabel = new JLabel("");
-		imagelabel.setIcon(new ImageIcon(TreatCareerObjReq.class.getResource("/edu/esprit/image/listCarrerObjective.jpg")));
+		imagelabel.setIcon(new ImageIcon(TreatCareerObjReq.class.getResource("/edu/esprit/image/listCarrerObjective1.jpg")));
 		imagelabel.setBounds(0, 0, 896, 595);
 		contentPane.add(imagelabel);
 		initDataBindings();

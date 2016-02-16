@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import gui.client.claim.Gestionclaims;
+import edu.esprit.domain.Employee;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -18,6 +18,7 @@ public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
 	MainMenu main;
+	static Employee employee;
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +26,7 @@ public class MainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainMenu frame = new MainMenu();
+					MainMenu frame = new MainMenu(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +38,8 @@ public class MainMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainMenu() {
+	public MainMenu(Employee e) {
+		employee=e;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1053, 644);
 		contentPane = new JPanel();
@@ -61,7 +63,7 @@ public class MainMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				main=new MainMenu();
+				main=new MainMenu(employee);
 				hide();
 				main.show();
 			}
@@ -71,7 +73,7 @@ public class MainMenu extends JFrame {
 		claim.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				SendClaim gestionclaim =new SendClaim();
+				SendClaim gestionclaim =new SendClaim(employee);
 				hide();
 				gestionclaim.show();
 				

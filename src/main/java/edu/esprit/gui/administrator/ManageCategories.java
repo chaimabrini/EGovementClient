@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.esprit.delegater.GestionCategorieDelegater;
 import edu.esprit.domain.Categorie;
+import edu.esprit.domain.Employee;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,12 +30,6 @@ public class ManageCategories extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblSignout;
 	private JLabel lblProfile;
-	private JLabel lblHome;
-	private JLabel lblEstablishment;
-	private JLabel lblCategory;
-	private JLabel lblEmloyee;
-	private JLabel lblStatistic;
-	private JLabel lblClaim;
 	private JLabel lblAddCategory;
 	private JTable table;
 	public List<Categorie> categories;
@@ -43,7 +38,7 @@ public class ManageCategories extends JFrame {
 	private Categorie category;
 	private JLabel lblUpdate;
 	private JLabel lblDelete;
-
+    static Employee employee;
 	/**
 	 * Launch the application.
 	 */
@@ -51,7 +46,7 @@ public class ManageCategories extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ManageCategories frame = new ManageCategories();
+					ManageCategories frame = new ManageCategories(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +58,8 @@ public class ManageCategories extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ManageCategories() {
+	public ManageCategories(Employee e) {
+		employee=e; 
 		categories=GestionCategorieDelegater.doFindAllCategorie();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 632);
@@ -87,6 +83,63 @@ public class ManageCategories extends JFrame {
 		});
 		scrollPane.setViewportView(table);
 		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAdmin homeA=new HomeAdmin(employee);
+				setVisible(false);
+				homeA.setVisible(true);
+			}
+		});
+		homeMenu.setBounds(284, 42, 89, 37);
+		contentPane.add(homeMenu);
+		
+		JLabel establishmentMenu = new JLabel("");
+		establishmentMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		establishmentMenu.setBounds(377, 42, 72, 37);
+		contentPane.add(establishmentMenu);
+		JLabel categoryMenu = new JLabel("");
+		categoryMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   ManageCategories manageCat=new ManageCategories(employee);
+			   setVisible(false);
+			   manageCat.setVisible(true);
+			}
+		});
+		categoryMenu.setBounds(453, 42, 80, 38);
+		contentPane.add(categoryMenu);
+		
+		JLabel employeeMenu = new JLabel("");
+		employeeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionEmployees gestionEmp =new GestionEmployees(employee);
+				setVisible(false);
+				gestionEmp.setVisible(true);
+			}
+		});
+		employeeMenu.setBounds(540, 42, 72, 37);
+		contentPane.add(employeeMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAdmin statisticAdm=new StatisticAdmin(employee);
+				setVisible(false);
+				statisticAdm.setVisible(true);
+			}
+		});
+		statisticMenu.setBounds(622, 42, 72, 37);
+		contentPane.add(statisticMenu);
+		
+		
 		JLabel lblBackgroundimage = new JLabel("");
 		lblBackgroundimage.setIcon(new ImageIcon(ManageCategories.class.getResource("/edu/esprit/image/Categories.jpg")));
 		lblBackgroundimage.setBounds(0, 0, 893, 600);
@@ -100,42 +153,11 @@ public class ManageCategories extends JFrame {
 		lblProfile.setBounds(812, 11, 41, 41);
 		contentPane.add(lblProfile);
 		
-		lblHome = new JLabel("");
-		lblHome.setBounds(285, 37, 84, 47);
-		contentPane.add(lblHome);
-		
-		lblEstablishment = new JLabel("");
-		lblEstablishment.setBounds(376, 37, 76, 47);
-		contentPane.add(lblEstablishment);
-		
-		lblCategory = new JLabel("");
-		lblCategory.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new ManageCategories().setVisible(true);;
-				setVisible(false);
-			}
-		});
-		lblCategory.setBounds(454, 37, 76, 47);
-		contentPane.add(lblCategory);
-		
-		lblEmloyee = new JLabel("");
-		lblEmloyee.setBounds(537, 37, 76, 47);
-		contentPane.add(lblEmloyee);
-		
-		lblStatistic = new JLabel("");
-		lblStatistic.setBounds(623, 37, 76, 47);
-		contentPane.add(lblStatistic);
-		
-		lblClaim = new JLabel("");
-		lblClaim.setBounds(703, 37, 84, 47);
-		contentPane.add(lblClaim);
-		
 		lblAddCategory = new JLabel("");
 		lblAddCategory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new AddCategory().setVisible(true);;
+				new AddCategory(employee).setVisible(true);;
 				setVisible(false);
 			}
 		});

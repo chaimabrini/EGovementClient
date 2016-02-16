@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import edu.esprit.delegater.GestionClaimDelegater;
 import edu.esprit.domain.Claim;
 import edu.esprit.domain.Employee;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -64,40 +66,54 @@ public class TreatClaim extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-				JLabel homeMenu = new JLabel("");
-				homeMenu.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-					}
-				});
-				homeMenu.setBounds(291, 47, 80, 37);
-				contentPane.add(homeMenu);
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
+		contentPane.add(homeMenu);
 		
 		JLabel servicesMenu = new JLabel("");
+		servicesMenu.setBounds(374, 47, 80, 37);
 		servicesMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
 			}
 		});
-		servicesMenu.setBounds(374, 47, 80, 37);
 		contentPane.add(servicesMenu);
 		
 		JLabel statisticMenu = new JLabel("");
+		statisticMenu.setBounds(461, 47, 72, 37);
 		statisticMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
 			}
 		});
-		statisticMenu.setBounds(461, 47, 72, 37);
 		contentPane.add(statisticMenu);
 		
 		JLabel serviceReqMenu = new JLabel("");
+		serviceReqMenu.setBounds(543, 46, 152, 38);
 		serviceReqMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
 			}
 		});
-		serviceReqMenu.setBounds(543, 46, 152, 38);
 		contentPane.add(serviceReqMenu);
 		
 		JLabel claimMenu = new JLabel("");
@@ -105,12 +121,12 @@ public class TreatClaim extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ManageClaim mClaim=new ManageClaim();
-				
-				mClaim.show();
 				hide();
+				mClaim.show();
+			
 			}
 		});
-		claimMenu.setBounds(699, 47, 46, 14);
+		claimMenu.setBounds(699, 47, 80, 37);
 		contentPane.add(claimMenu);
 		
 		JLabel sendclaimlabel = new JLabel("");
@@ -190,9 +206,22 @@ public class TreatClaim extends JFrame {
 		});
 		cancelLabel.setBounds(581, 501, 98, 31);
 		contentPane.add(cancelLabel);
+		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
+		
 		JLabel image = new JLabel("");
 		image.setIcon(new ImageIcon(TreatClaim.class.getResource("/edu/esprit/image/TreatClaim.jpg")));
-		image.setBounds(0, 11, 893, 600);
+		image.setBounds(0, 0, 893, 600);
 		contentPane.add(image);
 		
 		

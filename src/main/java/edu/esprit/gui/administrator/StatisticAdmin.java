@@ -33,6 +33,7 @@ import com.sun.speech.freetts.VoiceManager;
 import edu.esprit.delegater.GestionClaimDelegater;
 import edu.esprit.delegater.GestionEtablishmentDelegater;
 import edu.esprit.domain.Claim;
+import edu.esprit.domain.Employee;
 import edu.esprit.domain.Etablishment;
 
 import javax.swing.JLabel;
@@ -43,12 +44,6 @@ public class StatisticAdmin extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblSignout;
 	private JLabel lblProfile;
-	private JLabel lblHome;
-	private JLabel lblEstablishment;
-	private JLabel lblCategory;
-	private JLabel lblEmloyee;
-	private JLabel lblStatistic;
-	private JLabel lblClaim;
 	private JLabel lblAgentperestab;
 	private JLabel lblServiceperestab;
 	private JLabel lblClaimofadmin;
@@ -57,7 +52,7 @@ public class StatisticAdmin extends JFrame {
 	List<Etablishment> etablishments;
 	List<Claim> claims;
 	JPanel panelstatistique;
-	
+	static Employee employee;
 	Voice v;
 	
 	/**
@@ -67,7 +62,7 @@ public class StatisticAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StatisticAdmin frame = new StatisticAdmin();
+					StatisticAdmin frame = new StatisticAdmin(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -87,7 +82,8 @@ public class StatisticAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StatisticAdmin() {
+	public StatisticAdmin(Employee e) {
+		employee=e;
 		VoiceManager vm = VoiceManager.getInstance();
 		v = vm.getVoice("kevin16");
 		v.allocate();
@@ -108,37 +104,6 @@ public class StatisticAdmin extends JFrame {
 		lblProfile = new JLabel("");
 		lblProfile.setBounds(812, 11, 41, 41);
 		contentPane.add(lblProfile);
-		
-		lblHome = new JLabel("");
-		lblHome.setBounds(285, 37, 84, 47);
-		contentPane.add(lblHome);
-		
-		lblEstablishment = new JLabel("");
-		lblEstablishment.setBounds(376, 37, 76, 47);
-		contentPane.add(lblEstablishment);
-		
-		lblCategory = new JLabel("");
-		lblCategory.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new ManageCategories().setVisible(true);;
-				setVisible(false);
-			}
-		});
-		lblCategory.setBounds(454, 37, 76, 47);
-		contentPane.add(lblCategory);
-		
-		lblEmloyee = new JLabel("");
-		lblEmloyee.setBounds(537, 37, 76, 47);
-		contentPane.add(lblEmloyee);
-		
-		lblStatistic = new JLabel("");
-		lblStatistic.setBounds(623, 37, 76, 47);
-		contentPane.add(lblStatistic);
-		
-		lblClaim = new JLabel("");
-		lblClaim.setBounds(703, 37, 84, 47);
-		contentPane.add(lblClaim);
 		
 		lblAgentperestab = new JLabel("");
 		lblAgentperestab.addMouseListener(new MouseAdapter() {
@@ -184,7 +149,63 @@ public class StatisticAdmin extends JFrame {
 		 panelstatistique.setBounds(187, 183, 658, 305);
 		 
 		 contentPane.add(panelstatistique);
+
+			JLabel homeMenu = new JLabel("");
+			homeMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					HomeAdmin homeA=new HomeAdmin(employee);
+					setVisible(false);
+					homeA.setVisible(true);
+				}
+			});
+			homeMenu.setBounds(284, 42, 89, 37);
+			contentPane.add(homeMenu);
 			
+			JLabel establishmentMenu = new JLabel("");
+			establishmentMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+				}
+			});
+			establishmentMenu.setBounds(377, 42, 72, 37);
+			contentPane.add(establishmentMenu);
+			JLabel categoryMenu = new JLabel("");
+			categoryMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+				   ManageCategories manageCat=new ManageCategories(employee);
+				   setVisible(false);
+				   manageCat.setVisible(true);
+				}
+			});
+			categoryMenu.setBounds(453, 42, 80, 38);
+			contentPane.add(categoryMenu);
+			
+			JLabel employeeMenu = new JLabel("");
+			employeeMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					GestionEmployees gestionEmp =new GestionEmployees(employee);
+					setVisible(false);
+					gestionEmp.setVisible(true);
+				}
+			});
+			employeeMenu.setBounds(540, 42, 72, 37);
+			contentPane.add(employeeMenu);
+			
+			JLabel statisticMenu = new JLabel("");
+			statisticMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					StatisticAdmin statisticAdm=new StatisticAdmin(employee);
+					setVisible(false);
+					statisticAdm.setVisible(true);
+				}
+			});
+			statisticMenu.setBounds(622, 42, 72, 37);
+			contentPane.add(statisticMenu);
+		 
 		lblBackgroundimage = new JLabel("");
 		lblBackgroundimage.setIcon(new ImageIcon(StatisticAdmin.class.getResource("/edu/esprit/image/statisticAdmin.jpg")));
 		lblBackgroundimage.setBounds(0, 0, 893, 600);

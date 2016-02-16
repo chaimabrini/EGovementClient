@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import edu.esprit.domain.Employee;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -17,7 +20,7 @@ public class EditProfilAdmin extends JFrame {
 	private JPanel contentPane;
 	private JTextField login;
 	private JTextField pwd;
-
+    static Employee employee;
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +28,7 @@ public class EditProfilAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditProfilAdmin frame = new EditProfilAdmin();
+					EditProfilAdmin frame = new EditProfilAdmin(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +40,8 @@ public class EditProfilAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditProfilAdmin() {
+	public EditProfilAdmin(Employee e) {
+		employee=e;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 640);
 		contentPane = new JPanel();
@@ -45,18 +49,15 @@ public class EditProfilAdmin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\AnwerZa\\Desktop\\editProfil.jpg"));
-		lblNewLabel.setBounds(0, 0, 900, 600);
-		contentPane.add(lblNewLabel);
-		
 		login = new JTextField();
 		login.setBounds(186, 260, 176, 35);
+		login.setBorder(null);
 		contentPane.add(login);
 		login.setColumns(10);
 		
 		pwd = new JTextField();
 		pwd.setBounds(575, 260, 176, 35);
+		pwd.setBorder(null);
 		contentPane.add(pwd);
 		pwd.setColumns(10);
 		
@@ -97,5 +98,10 @@ public class EditProfilAdmin extends JFrame {
 		JLabel Claim = new JLabel("New label");
 		Claim.setBounds(700, 40, 88, 47);
 		contentPane.add(Claim);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\AnwerZa\\Desktop\\editProfil.jpg"));
+		lblNewLabel.setBounds(0, 0, 900, 600);
+		contentPane.add(lblNewLabel);
 	}
 }

@@ -27,8 +27,11 @@ import edu.esprit.delegater.GestionRoadTaxServiceDelegater;
 import edu.esprit.domain.Agent;
 import edu.esprit.domain.Employee;
 import edu.esprit.domain.RoadTaxService;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
@@ -74,6 +77,69 @@ public class RoadTaxeServiceRequest extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
+		contentPane.add(homeMenu);
+		
+		JLabel servicesMenu = new JLabel("");
+		servicesMenu.setBounds(374, 47, 80, 37);
+		servicesMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
+			}
+		});
+		contentPane.add(servicesMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.setBounds(461, 47, 72, 37);
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
+			}
+		});
+		contentPane.add(statisticMenu);
+		
+		JLabel serviceReqMenu = new JLabel("");
+		serviceReqMenu.setBounds(543, 46, 152, 38);
+		serviceReqMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
+			}
+		});
+		contentPane.add(serviceReqMenu);
+		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageClaim mClaim=new ManageClaim();
+				hide();
+				mClaim.show();
+			
+			}
+		});
+		claimMenu.setBounds(699, 47, 80, 37);
+		contentPane.add(claimMenu);
 		
 		
 		JLabel birthLabel = new JLabel("");
@@ -176,27 +242,26 @@ public class RoadTaxeServiceRequest extends JFrame {
 			public void mouseClicked(MouseEvent e)  {
 				
 				byte[] bAvatar = road.getDrivingLicense();
-				 
+				int i=1;
+				String namefile="";
 				try{
-				    FileOutputStream fos = new FileOutputStream("C:/temp/output.jpg"); 
+					 namefile="C:/temp/image"+i+".jpg";
+				    FileOutputStream fos = new FileOutputStream(namefile); 
 				    fos.write(bAvatar);
 				    fos.close();
+				    i++;
 				}catch(Exception e1){
 				    e1.printStackTrace();
 				}
 				
-				
-		System.out.println("okey");
+		        JOptionPane.showMessageDialog(contentPane, "the file is download you will find it in"+namefile);
 				
 			}
 		});
 		
 
         drivingLabel.setBounds(346, 287, 48, 35);
-		//drivingLabel.setText(road.getDrivingLicense());
-		
-		
-		contentPane.add(drivingLabel);
+	    contentPane.add(drivingLabel);
 		
 		reqDateText = new JLabel("New label");
 		reqDateText.setBounds(767, 152, 87, 29);
@@ -205,8 +270,20 @@ public class RoadTaxeServiceRequest extends JFrame {
 		reqDateText.setForeground(Color.white);
 		contentPane.add(reqDateText);
 		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
+		
 		JLabel imagelabel = new JLabel("");
-		imagelabel.setIcon(new ImageIcon(RoadTaxeServiceRequest.class.getResource("/edu/esprit/image/RoadTax.jpg")));
+		imagelabel.setIcon(new ImageIcon(RoadTaxeServiceRequest.class.getResource("/edu/esprit/image/RoadTax1.jpg")));
 		imagelabel.setBounds(0, -18, 909, 632);
 		contentPane.add(imagelabel);
 	}

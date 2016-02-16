@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +16,11 @@ import edu.esprit.delegater.GestionCareerObjectiveServiceDelegater;
 import edu.esprit.domain.Agent;
 import edu.esprit.domain.CareerObjectiveService;
 import edu.esprit.domain.Employee;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.Color;
@@ -29,6 +33,7 @@ public class CareerObjectifServiceRequest extends JFrame {
     CareerObjectiveService career;
     TreatCareerObjReq treatcaree;
     JLabel reqDateText;
+    private JLabel b3labeel;
 	/**
 	 * Launch the application.
 	 */
@@ -64,6 +69,71 @@ public class CareerObjectifServiceRequest extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
+		contentPane.add(homeMenu);
+		
+		JLabel servicesMenu = new JLabel("");
+		servicesMenu.setBounds(374, 47, 80, 37);
+		servicesMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
+			}
+		});
+		contentPane.add(servicesMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.setBounds(461, 47, 72, 37);
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
+			}
+		});
+		contentPane.add(statisticMenu);
+		
+		JLabel serviceReqMenu = new JLabel("");
+		serviceReqMenu.setBounds(543, 46, 152, 38);
+		serviceReqMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
+			}
+		});
+		contentPane.add(serviceReqMenu);
+		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageClaim mClaim=new ManageClaim();
+				hide();
+				mClaim.show();
+			
+			}
+		});
+		claimMenu.setBounds(699, 47, 80, 37);
+		contentPane.add(claimMenu);
+		
 		
 		JLabel birthLabel = new JLabel("");
 		birthLabel.addMouseListener(new MouseAdapter() {
@@ -127,6 +197,72 @@ public class CareerObjectifServiceRequest extends JFrame {
 		careerLabel.setBounds(21, 445, 114, 51);
 		contentPane.add(careerLabel);
 		
+		
+		
+		JLabel Birthcertificate = new JLabel("");
+		Birthcertificate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)  {
+				
+				byte[] bAvatar = career.getBirthcertificate();
+				int i=1;
+				String namefile="";
+				try{
+					 namefile="C:/temp/birthReg"+i+".jpg";
+				    FileOutputStream fos = new FileOutputStream(namefile); 
+				    fos.write(bAvatar);
+				    fos.close();
+				    i++;
+				}catch(Exception e1){
+				    e1.printStackTrace();
+				}
+				
+		        JOptionPane.showMessageDialog(contentPane, "the file is download you will find it in"+namefile);
+				
+			}
+		});
+		
+
+        Birthcertificate.setBounds(553, 212, 48, 35);
+	    contentPane.add(Birthcertificate);
+	    
+	    
+	   
+	    b3labeel = new JLabel("");
+		b3labeel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)  {
+				
+				byte[] bAvatar = career.getBirthcertificate();
+				int i=1;
+				String namefile="";
+				try{
+					 namefile="C:/temp/birthReg"+i+".jpg";
+				    FileOutputStream fos = new FileOutputStream(namefile); 
+				    fos.write(bAvatar);
+				    fos.close();
+				    i++;
+				}catch(Exception e1){
+				    e1.printStackTrace();
+				}
+				
+		        JOptionPane.showMessageDialog(contentPane, "the file is download you will find it in"+namefile);
+				
+			}
+		});
+		
+
+        b3labeel.setBounds(706, 212, 48, 35);
+	    contentPane.add(b3labeel);
+	    
+		
+		
+		
+		
+		
+		
+		
+		
 		JTextArea responsetext = new JTextArea();
 		responsetext.setBounds(207, 396, 506, 168);
 		
@@ -161,9 +297,21 @@ public class CareerObjectifServiceRequest extends JFrame {
 		reqDateText.setForeground(Color.white);
 		contentPane.add(reqDateText);
 		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
+		
 		
 		JLabel imagelabel = new JLabel("");
-		imagelabel.setIcon(new ImageIcon(CareerObjectifServiceRequest.class.getResource("/edu/esprit/image/CareerObjective.jpg")));
+		imagelabel.setIcon(new ImageIcon(CareerObjectifServiceRequest.class.getResource("/edu/esprit/image/CareerObjective1.jpg")));
 		imagelabel.setBounds(0, -17, 909, 632);
 		contentPane.add(imagelabel);
 		

@@ -11,6 +11,8 @@ import edu.esprit.delegater.GestionEmployeeDelegater;
 import edu.esprit.domain.Admin;
 import edu.esprit.domain.Agent;
 import edu.esprit.domain.Employee;
+import edu.esprit.gui.administrator.HomeAdmin;
+import edu.esprit.gui.agent.HomeAgent;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -27,7 +29,7 @@ public class Authentification extends JFrame {
 	private JPasswordField pwd;
 	private JTextField login;
 	private JLabel connect;
-
+    public static Employee employee;
 	/**
 	 * Launch the application.
 	 */
@@ -75,14 +77,25 @@ public class Authentification extends JFrame {
 		connect.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Employee employee=GestionEmployeeDelegater.doAuthentificate(login.getText(), new String (pwd.getPassword()));
-				if (employee!=null){
-					if (employee instanceof Admin){
+				Employee employee1=GestionEmployeeDelegater.doAuthentificate(login.getText(), new String (pwd.getPassword()));
+				employee=employee1;
+				if (employee1!=null){
+					if (employee1 instanceof Admin){
+						employee=employee1;
 						System.out.println("Admin");
+						HomeAdmin homeAdmin=new HomeAdmin(employee);
+						setVisible(false);
+						homeAdmin.setVisible(true);
+						
 					}
 					else
-						if (employee instanceof Agent)
+						if (employee1 instanceof Agent){
+							HomeAgent homeAgent=new HomeAgent(employee);
 							System.out.println("Agent");
+							setVisible(false);
+							homeAgent.setVisible(true);
+						}
+							
 					setVisible(false);
 				}
 			}

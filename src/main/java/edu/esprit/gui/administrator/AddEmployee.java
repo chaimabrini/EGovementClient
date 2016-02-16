@@ -46,7 +46,7 @@ public class AddEmployee extends JFrame {
 	private JPasswordField pwd;
 	private JTextField role;
 	private List<Etablishment> establishments;
-
+    static Employee employee;
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +54,7 @@ public class AddEmployee extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddEmployee frame = new AddEmployee();
+					AddEmployee frame = new AddEmployee(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,8 +66,8 @@ public class AddEmployee extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddEmployee() {
-
+	public AddEmployee(Employee e) {
+        employee=e;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 630);
 		contentPane = new JPanel();
@@ -87,6 +87,64 @@ public class AddEmployee extends JFrame {
 			estList.addItem(establishments.get(i).getName());
 		}
 
+		JLabel homeMenu = new JLabel("");
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAdmin homeA=new HomeAdmin(employee);
+				setVisible(false);
+				homeA.setVisible(true);
+			}
+		});
+		homeMenu.setBounds(284, 42, 89, 37);
+		contentPane.add(homeMenu);
+		
+		JLabel establishmentMenu = new JLabel("");
+		establishmentMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		establishmentMenu.setBounds(377, 42, 72, 37);
+		contentPane.add(establishmentMenu);
+		JLabel categoryMenu = new JLabel("");
+		categoryMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   ManageCategories manageCat=new ManageCategories(employee);
+			   setVisible(false);
+			   manageCat.setVisible(true);
+			}
+		});
+		categoryMenu.setBounds(453, 42, 80, 38);
+		contentPane.add(categoryMenu);
+		
+		JLabel employeeMenu = new JLabel("");
+		employeeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionEmployees gestionEmp =new GestionEmployees(employee);
+				setVisible(false);
+				gestionEmp.setVisible(true);
+			}
+		});
+		employeeMenu.setBounds(540, 42, 72, 37);
+		contentPane.add(employeeMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAdmin statisticAdm=new StatisticAdmin(employee);
+				setVisible(false);
+				statisticAdm.setVisible(true);
+			}
+		});
+		statisticMenu.setBounds(622, 42, 72, 37);
+		contentPane.add(statisticMenu);
+		
+		
+		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(AddEmployee.class.getResource("/edu/esprit/image/AddEmployee.jpg")));
 		lblNewLabel.setBounds(0, 0, 894, 591);
@@ -105,8 +163,8 @@ public class AddEmployee extends JFrame {
 
 				if (GestionEmployeeDelegater.doAddEmployee((Employee) agent)) {
 					System.out.println("Emloyee Ajouté avec Succées");
-					
-					new GestionEmployees().setVisible(true);
+					setVisible(false);
+					new GestionEmployees(employee).setVisible(true);
 				
 					
 
@@ -123,50 +181,20 @@ public class AddEmployee extends JFrame {
 		cancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				new GestionEmployees().setVisible(true);
+				setVisible(false);
+				new GestionEmployees(employee).setVisible(true);
 
 			}
 		});
 		cancel.setBounds(517, 423, 116, 41);
 		contentPane.add(cancel);
 
-		JLabel home = new JLabel("New label");
-		home.setBounds(286, 39, 86, 41);
-		contentPane.add(home);
-
-		JLabel establishment = new JLabel("New label");
-		establishment.setBounds(371, 39, 86, 41);
-		contentPane.add(establishment);
-
-		JLabel category = new JLabel("New label");
-		category.setBounds(456, 39, 78, 41);
-		contentPane.add(category);
-
-		JLabel employee = new JLabel("New label");
-		employee.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new GestionEmployees().setVisible(true);
-				System.out.println("Clicked ! ! ! ");
-			}
-		});
-
-		employee.setBounds(620, 39, -83, 41);
-		contentPane.add(employee);
-
-		JLabel statistics = new JLabel("New label");
-		statistics.setBounds(620, 39, 78, 41);
-		contentPane.add(statistics);
-
-		JLabel claim = new JLabel("New label");
-		claim.setBounds(708, 39, 76, 41);
-		contentPane.add(claim);
-
 		JLabel profil = new JLabel("New label");
 		profil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new EditProfilAdmin().setVisible(true);
+				setVisible(false);
+				new EditProfilAdmin(AddEmployee.employee).setVisible(true);
 			}
 		});
 		profil.setBounds(817, 0, 33, 41);
@@ -178,6 +206,7 @@ public class AddEmployee extends JFrame {
 
 		login = new JTextField();
 		login.setBounds(232, 259, 155, 25);
+		login.setBorder(null);
 		contentPane.add(login);
 		login.setColumns(10);
 
@@ -186,6 +215,7 @@ public class AddEmployee extends JFrame {
 		contentPane.add(pwd);
 
 		role = new JTextField();
+		role.setBorder(null);
 		role.setBounds(566, 346, 155, 20);
 		contentPane.add(role);
 		role.setColumns(10);

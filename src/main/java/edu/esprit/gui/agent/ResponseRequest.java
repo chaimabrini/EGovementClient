@@ -15,6 +15,9 @@ import edu.esprit.domain.CareerObjectiveService;
 import edu.esprit.domain.CinRequest;
 import edu.esprit.domain.Employee;
 import edu.esprit.domain.RoadTaxService;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
@@ -56,6 +59,71 @@ public class ResponseRequest extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
+		contentPane.add(homeMenu);
+		
+		JLabel servicesMenu = new JLabel("");
+		servicesMenu.setBounds(374, 47, 80, 37);
+		servicesMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
+			}
+		});
+		contentPane.add(servicesMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.setBounds(461, 47, 72, 37);
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
+			}
+		});
+		contentPane.add(statisticMenu);
+		
+		JLabel serviceReqMenu = new JLabel("");
+		serviceReqMenu.setBounds(543, 46, 152, 38);
+		serviceReqMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
+			}
+		});
+		contentPane.add(serviceReqMenu);
+		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageClaim mClaim=new ManageClaim();
+				hide();
+				mClaim.show();
+			
+			}
+		});
+		claimMenu.setBounds(699, 47, 80, 37);
+		contentPane.add(claimMenu);
+		
+		
 		
 		JTextArea citizen = new JTextArea();
 		citizen.setEditable(false);
@@ -190,6 +258,18 @@ public class ResponseRequest extends JFrame {
 		});
 		careerLabel.setBounds(21, 445, 114, 51);
 		contentPane.add(careerLabel);
+		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
 		
 		
 		JLabel imageLabel = new JLabel("");

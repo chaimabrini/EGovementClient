@@ -33,7 +33,10 @@ import com.sun.speech.freetts.VoiceManager;
 import edu.esprit.delegater.GestionClaimDelegater;
 import edu.esprit.delegater.GestionEtablishmentDelegater;
 import edu.esprit.domain.Claim;
+import edu.esprit.domain.Employee;
 import edu.esprit.domain.Etablishment;
+import edu.esprit.gui.authentification.Authentification;
+import gui.agent.service.MainService;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -41,7 +44,6 @@ import javax.swing.ImageIcon;
 public class StatisticAgent extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel lblSignout;
 	private JLabel lblProfile;
 	private JLabel lblHome;
 	private JLabel lblEstablishment;
@@ -60,6 +62,7 @@ public class StatisticAgent extends JFrame {
 	
 	Voice v;
 	
+	static Employee employee;
 	/**
 	 * Launch the application.
 	 */
@@ -67,7 +70,7 @@ public class StatisticAgent extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StatisticAgent frame = new StatisticAgent();
+					StatisticAgent frame = new StatisticAgent(employee);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -87,7 +90,8 @@ public class StatisticAgent extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StatisticAgent() {
+	public StatisticAgent(Employee e) {
+		employee=e;
 		VoiceManager vm = VoiceManager.getInstance();
 		v = vm.getVoice("kevin16");
 		v.allocate();
@@ -101,9 +105,81 @@ public class StatisticAgent extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblSignout = new JLabel("");
-		lblSignout.setBounds(856, 11, 35, 41);
-		contentPane.add(lblSignout);
+		JLabel homeMenu = new JLabel("");
+		homeMenu.setBounds(291, 47, 80, 37);
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAgent homeAgent=new HomeAgent(employee);
+			    setVisible(false);
+			    homeAgent.setVisible(true);
+			}
+		});
+		contentPane.add(homeMenu);
+		
+		JLabel servicesMenu = new JLabel("");
+		servicesMenu.setBounds(374, 47, 80, 37);
+		servicesMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainService mainService=new MainService(employee);
+				setVisible(false);
+				mainService.setVisible(true);
+			}
+		});
+		contentPane.add(servicesMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.setBounds(461, 47, 72, 37);
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAgent statAgent =new StatisticAgent(employee);
+				setVisible(false);
+				statAgent.setVisible(true);
+				
+			}
+		});
+		contentPane.add(statisticMenu);
+		
+		JLabel serviceReqMenu = new JLabel("");
+		serviceReqMenu.setBounds(543, 46, 152, 38);
+		serviceReqMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreatBirthReg treatBR =new TreatBirthReg(employee);
+				setVisible(false);
+				treatBR.setVisible(true);
+				
+			}
+		});
+		contentPane.add(serviceReqMenu);
+		
+		JLabel deconnexionLabel = new JLabel("");
+		deconnexionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Authentification auth=new Authentification();
+				setVisible(false);
+				auth.setVisible(true);
+			}
+		});
+		deconnexionLabel.setBounds(857, 11, 36, 36);
+		contentPane.add(deconnexionLabel);
+		
+		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageClaim mClaim=new ManageClaim();
+				hide();
+				mClaim.show();
+			
+			}
+		});
+		claimMenu.setBounds(699, 47, 80, 37);
+		contentPane.add(claimMenu);
 		
 		lblProfile = new JLabel("");
 		lblProfile.setBounds(812, 11, 41, 41);
