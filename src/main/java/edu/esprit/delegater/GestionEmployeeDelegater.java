@@ -31,4 +31,8 @@ public class GestionEmployeeDelegater {
 	public static Employee doFindAllEmployeeByCin(String cin) {
 		return getProxy().findEmployeeByCin(cin);
 	}
+	public static Employee doFindAllEmployeeById(int id) {
+		return getProxy().FindAllEmployeeById(id);
+	}
+	
 }

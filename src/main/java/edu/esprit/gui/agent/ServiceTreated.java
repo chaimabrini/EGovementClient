@@ -1,4 +1,4 @@
-package gui.client.claim;
+package edu.esprit.gui.agent;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,8 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
-public class Menu extends JFrame {
+public class ServiceTreated extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +19,7 @@ public class Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu frame = new Menu();
+					ServiceTreated frame = new ServiceTreated();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,13 +31,17 @@ public class Menu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Menu() {
+	public ServiceTreated() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblOkey = new JLabel("okey ");
+		lblOkey.setBounds(187, 137, 46, 14);
+		contentPane.add(lblOkey);
 	}
 
 }

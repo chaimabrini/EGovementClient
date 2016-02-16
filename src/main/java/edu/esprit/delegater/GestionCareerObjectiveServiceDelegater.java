@@ -17,28 +17,28 @@ private static final String jndi = "E-Goverment/GestionCareerObjectiveService!ed
 		return (GestionCareerObjectiveServiceRemote) ServiceLocator.getInstance().getProxy(jndi);
 	}
 	
-	Boolean doAddCareerObjectiveService(CareerObjectiveService careerObjectiveService){
+	public static Boolean doAddCareerObjectiveService(CareerObjectiveService careerObjectiveService){
 		return getProxy().addCareerObjectiveService(careerObjectiveService);
 	}
-	Boolean doDeleteCareerObjectiveService(CareerObjectiveService careerObjectiveService){
+	public static Boolean doDeleteCareerObjectiveService(CareerObjectiveService careerObjectiveService){
 		return getProxy().deleteCareerObjectiveService(careerObjectiveService);
 	}
-	Boolean doUpdateCareerObjectiveService(CareerObjectiveService careerObjectiveService){
+	public static Boolean doUpdateCareerObjectiveService(CareerObjectiveService careerObjectiveService){
 		return getProxy().updateCareerObjectiveService(careerObjectiveService);
 	}
-	CareerObjectiveService doFindCareerObjectiveServiceByCin(String cin){
+	public static CareerObjectiveService doFindCareerObjectiveServiceByCin(String cin){
 		return getProxy().findCareerObjectiveServiceByCin(cin);
 	}
-	CareerObjectiveService doFindCareerObjectiveServiceByGiroAccount(String giroAccount){
+	public static CareerObjectiveService doFindCareerObjectiveServiceByGiroAccount(String giroAccount){
 		return getProxy().findCareerObjectiveServiceByGiroAccount(giroAccount);
 	}
-	List<CareerObjectiveService> doFindCareerObjectiveServiceByCitizen(Citizen citizen){
+	public static List<CareerObjectiveService> doFindCareerObjectiveServiceByCitizen(Citizen citizen){
 		return getProxy().findCareerObjectiveServiceByCitizen(citizen);
 	}
-	List<CareerObjectiveService> doFindCareerObjectiveServiceByAgent(Agent agent){
+	public static List<CareerObjectiveService> doFindCareerObjectiveServiceByAgent(Agent agent){
 		return getProxy().findCareerObjectiveServiceByAgent(agent);
 	}
-	List<CareerObjectiveService> doFindAllCareerObjectiveService(){
+	public static List<CareerObjectiveService> doFindAllCareerObjectiveService(){
 		return getProxy().findAllCareerObjectiveService();
 	}
 	

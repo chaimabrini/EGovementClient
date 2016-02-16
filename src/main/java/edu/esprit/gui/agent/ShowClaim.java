@@ -1,4 +1,4 @@
-package edu.esprit.agent.gui;
+package edu.esprit.gui.agent;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,13 +8,25 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
-public class TreatClaim extends JFrame {
+import edu.esprit.delegater.GestionClaimDelegater;
+import edu.esprit.domain.Agent;
+import edu.esprit.domain.Claim;
+import edu.esprit.domain.Employee;
+
+import javax.swing.JLabel;
+import javax.persistence.IdClass;
+import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ShowClaim extends JFrame {
 
 	private JPanel contentPane;
-
+	static Employee employee; 
+	//MyClaim myclaim=new MyClaim( agent );
+	MyClaim myclaim;
+	static int idclaim;
 	/**
 	 * Launch the application.
 	 */
@@ -22,7 +34,7 @@ public class TreatClaim extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TreatClaim frame = new TreatClaim();
+					ShowClaim frame = new ShowClaim(employee,idclaim);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,19 +46,40 @@ public class TreatClaim extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TreatClaim() {
+	public ShowClaim(Employee employee , int idclm ) {
+		idclaim=idclm;
+		myclaim=new MyClaim(employee);
+		System.out.println(idclaim);
+		Claim claimselected=GestionClaimDelegater.doFindClaimById(idclaim);
+	    System.out.println(claimselected.getIdClaim());
+	    
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 632);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		JTextArea descriptiontext = new JTextArea();
+		descriptiontext.setEditable(false);
+		descriptiontext.setBounds(338, 334, 407, 165);
+		contentPane.add(descriptiontext);
+		descriptiontext.setText(claimselected.getTextClaim());
 		
-		JLabel image = new JLabel("");
-		image.setIcon(new ImageIcon("C:\\Users\\FBI\\Desktop\\PIDEV\\SPRINT 1\\TreatClaim.jpg"));
-		image.setBounds(0, 0, 893, 600);
-		contentPane.add(image);
-
+		JTextArea subjecttext = new JTextArea();
+		subjecttext.setEditable(false);
+		subjecttext.setBounds(338, 200, 397, 31);
+		contentPane.add(subjecttext);
+		subjecttext.setText(claimselected.getSubject());
+		
+		JTextArea mailtext = new JTextArea();
+		mailtext.setEditable(false);
+		mailtext.setBounds(338, 263, 397, 31);
+		contentPane.add(mailtext);
+		mailtext.setText(claimselected.getMail());
+		
+		
 		JLabel homeMenu = new JLabel("");
 		homeMenu.addMouseListener(new MouseAdapter() {
 			@Override
@@ -88,12 +121,12 @@ public class TreatClaim extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ManageClaim mClaim=new ManageClaim();
-				
-				mClaim.show();
 				hide();
+				mClaim.show();
+			
 			}
 		});
-		claimMenu.setBounds(699, 47, 46, 14);
+		claimMenu.setBounds(699, 47, 83, 37);
 		contentPane.add(claimMenu);
 		
 		JLabel sendclaimlabel = new JLabel("");
@@ -112,7 +145,7 @@ public class TreatClaim extends JFrame {
 		claimslabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				MyClaim myclaim=new MyClaim();
+				
 				hide();
 				myclaim.show();
 			}
@@ -123,27 +156,48 @@ public class TreatClaim extends JFrame {
 		clientlabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ClientClaim clientClaim=new ClientClaim();
+				ClientClaim clientClaim=new ClientClaim(employee);
 				hide();
 				clientClaim.show();
 			}
 		});
 		clientlabel.setBounds(51, 334, 83, 44);
 		contentPane.add(clientlabel);
-		
-		JLabel showclaimlabel = new JLabel("");
-		showclaimlabel.addMouseListener(new MouseAdapter() {
+		JLabel myclaimlabel = new JLabel("");
+		myclaimlabel.setBounds(51, 269, 80, 44);
+		myclaimlabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ShowClaim showClaim=new ShowClaim();
+				MyClaim myclaim =new MyClaim(employee);
 				hide();
-				showClaim.show();
+				myclaim.show();
 			}
 		});
-		showclaimlabel.setBounds(752, 227, 99, 26);
-		contentPane.add(showclaimlabel);
+		contentPane.add(myclaimlabel);
+		
+		JLabel treat = new JLabel("");
+		treat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				TreatClaim treatclaim=new TreatClaim(employee, idclaim);
+				setVisible(false);
+				treatclaim.setVisible(true);;
+				
+				
+				
+				
+			}
+		});
+		treat.setBounds(503, 540, 95, 31);
+		contentPane.add(treat);
+		
+		JLabel image = new JLabel("");
+		image.setIcon(new ImageIcon(ShowClaim.class.getResource("/edu/esprit/image/ShowClaim.jpg")));
+		image.setBounds(0, 0, 893, 600);
+		contentPane.add(image);
+		
 		
 		
 	}
-
 }

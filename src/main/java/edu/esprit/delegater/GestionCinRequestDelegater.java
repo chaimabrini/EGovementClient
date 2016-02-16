@@ -44,7 +44,7 @@ private static final String jndi = "E-Goverment/GestionCinRequest!edu.esprit.ser
 	public static List<CinRequest> doFindAllResidenceCertificate(CinRequest cinRequest){
 		return getProxy().findAllResidenceCertificate(cinRequest);
 	}
-	public static List<CinRequest> findAllCinRequest(){
+	public static List<CinRequest> doFindAllCinRequest(){
 		return getProxy().findAllCinRequest();
 	}
 	
