@@ -1,30 +1,25 @@
-package edu.esprit.agent.gui;
+package edu.esprit.gui.agent;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import edu.esprit.delegater.GestionClaimDelegater;
 import edu.esprit.domain.Agent;
-import edu.esprit.domain.Claim;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class ManageClaim extends JFrame {
+public class ShowClaim extends JFrame {
 
 	private JPanel contentPane;
-	Agent agent ;
+	Agent agent; 
 	//MyClaim myclaim=new MyClaim( agent );
 	MyClaim myclaim=new MyClaim();
-	
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +27,7 @@ public class ManageClaim extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ManageClaim frame = new ManageClaim();
+					ShowClaim frame = new ShowClaim();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +39,7 @@ public class ManageClaim extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ManageClaim() {
+	public ShowClaim() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 632);
 		contentPane = new JPanel();
@@ -53,9 +48,11 @@ public class ManageClaim extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel image = new JLabel("");
-		image.setIcon(new ImageIcon("C:\\Users\\FBI\\Desktop\\PIDEV\\SPRINT 1\\SendClaim.jpg"));
-		image.setBounds(0, 0, 900, 600);
+		image.setIcon(new ImageIcon("C:\\Users\\FBI\\Desktop\\PIDEV\\SPRINT 1\\ShowClaim.jpg"));
+		image.setBounds(0, 0, 893, 600);
 		contentPane.add(image);
+		
+		
 		JLabel homeMenu = new JLabel("");
 		homeMenu.addMouseListener(new MouseAdapter() {
 			@Override
@@ -97,14 +94,13 @@ public class ManageClaim extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ManageClaim mClaim=new ManageClaim();
-				hide();
+				
 				mClaim.show();
-			
+				hide();
 			}
 		});
 		claimMenu.setBounds(699, 47, 46, 14);
 		contentPane.add(claimMenu);
-		
 		
 		JLabel sendclaimlabel = new JLabel("");
 		sendclaimlabel.addMouseListener(new MouseAdapter() {
@@ -122,60 +118,38 @@ public class ManageClaim extends JFrame {
 		claimslabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
-				myclaim.show();
+				MyClaim myclaim=new MyClaim();
 				hide();
+				myclaim.show();
 			}
 		});
 		claimslabel.setBounds(27, 200, 107, 44);
 		contentPane.add(claimslabel);
-		
-		JTextArea description = new JTextArea();
-		description.setBounds(336, 325, 404, 118);
-		contentPane.add(description);
-
-		JTextArea subject = new JTextArea(1,1);
-		subject.setBounds(336, 201, 409, 31);
-		
-		contentPane.add(subject);
-		
-		JTextArea mail = new JTextArea();
-		mail.setBounds(336, 261, 409, 31);
-		contentPane.add(mail);
-		
-		JLabel sendbouton = new JLabel("");
-		sendbouton.addMouseListener(new MouseAdapter() {
+		JLabel clientlabel = new JLabel("");
+		clientlabel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Claim claim =new Claim();
-				claim.setMail(mail.getText());
-				claim.setState("untreated");
-				claim.setSubject(subject.getText());
-				claim.setTextClaim(description.getText());
-				claim.setCitizen(null);//lezim null 5ater agent bich yab3ath 
-				claim.setEmployee(null);
-				if(GestionClaimDelegater.doAddClaim(claim)){
-					hide();
-					myclaim.show();
-				}
-				
+			public void mouseClicked(MouseEvent e) {
+				ClientClaim clientClaim=new ClientClaim();
+				hide();
+				clientClaim.show();
 			}
 		});
-		sendbouton.setBounds(407, 483, 92, 31);
-		contentPane.add(sendbouton);
+		clientlabel.setBounds(51, 334, 83, 44);
+		contentPane.add(clientlabel);
 		
-		JLabel cancelbouton = new JLabel("");
-		cancelbouton.addMouseListener(new MouseAdapter() {
+		JLabel showclaimlabel = new JLabel("");
+		showclaimlabel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				subject.setText(null);
-				mail.setText(null);
-				description.setText(null);
+			public void mouseClicked(MouseEvent e) {
+				ShowClaim showClaim=new ShowClaim();
+				hide();
+				showClaim.show();
 			}
 		});
-		cancelbouton.setBounds(596, 483, 92, 31);
-		contentPane.add(cancelbouton);
+		showclaimlabel.setBounds(752, 227, 99, 26);
+		contentPane.add(showclaimlabel);
 		
 		
 	}
+
 }

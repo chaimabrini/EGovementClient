@@ -113,8 +113,7 @@ public class GestionEmployees extends JFrame {
 		scrollPane.setViewportView(table);
 
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(
-				"C:\\Users\\AnwerZa\\git\\EGovementClient\\src\\main\\java\\edu\\esprit\\gui\\images\\Employees.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(GestionEmployees.class.getResource("/edu/esprit/image/Employees.jpg")));
 		lblNewLabel.setBounds(0, 0, 894, 600);
 		contentPane.add(lblNewLabel);
 

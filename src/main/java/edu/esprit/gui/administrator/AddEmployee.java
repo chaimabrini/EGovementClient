@@ -88,8 +88,7 @@ public class AddEmployee extends JFrame {
 		}
 
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(
-				"C:\\Users\\AnwerZa\\git\\EGovementClient\\src\\main\\java\\edu\\esprit\\gui\\images\\AddEmployee.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(AddEmployee.class.getResource("/edu/esprit/image/AddEmployee.jpg")));
 		lblNewLabel.setBounds(0, 0, 894, 591);
 		contentPane.add(lblNewLabel);
 

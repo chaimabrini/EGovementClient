@@ -1,38 +1,19 @@
-package edu.esprit.agent.gui;
+package edu.esprit.gui.agent;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
-import edu.esprit.delegater.GestionClaimDelegater;
-import edu.esprit.domain.*;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
-import org.jdesktop.swingbinding.JTableBinding;
-import org.jdesktop.swingbinding.SwingBindings;
-import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-import org.jdesktop.beansbinding.BeanProperty;
 
-public class MyClaim extends JFrame {
+public class TreatClaim extends JFrame {
 
 	private JPanel contentPane;
-	List <Claim> listClaims;
-	private JTable table;
-	
-	//static Agent agent=null;
-
 
 	/**
 	 * Launch the application.
@@ -41,8 +22,7 @@ public class MyClaim extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
-					MyClaim frame = new MyClaim();
+					TreatClaim frame = new TreatClaim();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,11 +34,7 @@ public class MyClaim extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyClaim() {
-		listClaims = new ArrayList<Claim>();
-		listClaims=GestionClaimDelegater.doFindAllClaim() ;
-		
-		//agent=agentconnected;
+	public TreatClaim() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 632);
 		contentPane = new JPanel();
@@ -66,74 +42,61 @@ public class MyClaim extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(188, 200, 532, 307);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		
-		scrollPane.setViewportView(table);
-		
 		JLabel image = new JLabel("");
+		image.setIcon(new ImageIcon("C:\\Users\\FBI\\Desktop\\PIDEV\\SPRINT 1\\TreatClaim.jpg"));
 		image.setBounds(0, 0, 893, 600);
-		image.setIcon(new ImageIcon("C:\\Users\\FBI\\Desktop\\PIDEV\\SPRINT 1\\MyClaims.jpg"));
 		contentPane.add(image);
-		
+
 		JLabel homeMenu = new JLabel("");
-		homeMenu.setBounds(291, 47, 80, 37);
 		homeMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
+		homeMenu.setBounds(291, 47, 80, 37);
 		contentPane.add(homeMenu);
 		
 		JLabel servicesMenu = new JLabel("");
-		servicesMenu.setBounds(374, 47, 80, 37);
 		servicesMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
+		servicesMenu.setBounds(374, 47, 80, 37);
 		contentPane.add(servicesMenu);
 		
 		JLabel statisticMenu = new JLabel("");
-		statisticMenu.setBounds(461, 47, 72, 37);
 		statisticMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
+		statisticMenu.setBounds(461, 47, 72, 37);
 		contentPane.add(statisticMenu);
 		
 		JLabel serviceReqMenu = new JLabel("");
-		serviceReqMenu.setBounds(543, 46, 152, 38);
 		serviceReqMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
+		serviceReqMenu.setBounds(543, 46, 152, 38);
 		contentPane.add(serviceReqMenu);
 		
 		JLabel claimMenu = new JLabel("");
-		claimMenu.setBounds(699, 47, 46, 14);
 		claimMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ManageClaim mClaim=new ManageClaim();
-			
+				
 				mClaim.show();
 				hide();
-				
 			}
 		});
+		claimMenu.setBounds(699, 47, 46, 14);
 		contentPane.add(claimMenu);
 		
-		
-		
-		
 		JLabel sendclaimlabel = new JLabel("");
-		sendclaimlabel.setBounds(27, 139, 107, 44);
 		sendclaimlabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -142,34 +105,21 @@ public class MyClaim extends JFrame {
 				mClaim.show();
 			}
 		});
+		sendclaimlabel.setBounds(27, 139, 107, 44);
 		contentPane.add(sendclaimlabel);
 		
 		JLabel claimslabel = new JLabel("");
-		claimslabel.setBounds(27, 200, 107, 44);
 		claimslabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				MyClaim myclaim =new MyClaim();
+				MyClaim myclaim=new MyClaim();
 				hide();
 				myclaim.show();
 			}
 		});
+		claimslabel.setBounds(27, 200, 107, 44);
 		contentPane.add(claimslabel);
-		
-		JLabel myclaimlabel = new JLabel("");
-		myclaimlabel.setBounds(51, 269, 80, 44);
-		myclaimlabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MyClaim myclaim =new MyClaim();
-				hide();
-				myclaim.show();
-			}
-		});
-		contentPane.add(myclaimlabel);
-		
 		JLabel clientlabel = new JLabel("");
-		clientlabel.setBounds(51, 334, 83, 44);
 		clientlabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -178,10 +128,10 @@ public class MyClaim extends JFrame {
 				clientClaim.show();
 			}
 		});
+		clientlabel.setBounds(51, 334, 83, 44);
 		contentPane.add(clientlabel);
 		
 		JLabel showclaimlabel = new JLabel("");
-		showclaimlabel.setBounds(752, 227, 99, 26);
 		showclaimlabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -190,22 +140,10 @@ public class MyClaim extends JFrame {
 				showClaim.show();
 			}
 		});
+		showclaimlabel.setBounds(752, 227, 99, 26);
 		contentPane.add(showclaimlabel);
-		initDataBindings();
-	
+		
+		
 	}
-	protected void initDataBindings() {
-		JTableBinding<Claim, List<Claim>, JTable> jTableBinding = SwingBindings.createJTableBinding(UpdateStrategy.READ, listClaims, table);
-		//
-		BeanProperty<Claim, String> claimBeanProperty = BeanProperty.create("subject");
-		jTableBinding.addColumnBinding(claimBeanProperty).setColumnName("Subject");
-		//
-		BeanProperty<Claim, String> claimBeanProperty_1 = BeanProperty.create("mail");
-		jTableBinding.addColumnBinding(claimBeanProperty_1).setColumnName("Mail");
-		//
-		BeanProperty<Claim, String> claimBeanProperty_2 = BeanProperty.create("state");
-		jTableBinding.addColumnBinding(claimBeanProperty_2).setColumnName("State");
-		//
-		jTableBinding.bind();
-	}
+
 }

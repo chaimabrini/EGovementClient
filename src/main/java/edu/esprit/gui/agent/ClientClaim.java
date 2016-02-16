@@ -1,4 +1,4 @@
-package edu.esprit.agent.gui;
+package edu.esprit.gui.agent;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
