@@ -1,4 +1,4 @@
-package gui.esprit.administrator;
+package edu.esprit.gui.administrator;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
