@@ -57,7 +57,6 @@ public class listClaims extends JFrame {
 		claims = new ArrayList<Claim>();
 		claims = GestionClaimDelegater.doFindClaimClient();
 		
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 640);
 		contentPane = new JPanel();
