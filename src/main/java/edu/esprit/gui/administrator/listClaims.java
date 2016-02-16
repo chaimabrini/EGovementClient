@@ -72,7 +72,75 @@ public class listClaims extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JLabel profil = new JLabel("New label");
+		JLabel homeMenu = new JLabel("");
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAdmin homeA=new HomeAdmin(employee);
+				setVisible(false);
+				homeA.setVisible(true);
+			}
+		});
+		homeMenu.setBounds(284, 42, 89, 37);
+		contentPane.add(homeMenu);
+		
+		JLabel establishmentMenu = new JLabel("");
+		establishmentMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		establishmentMenu.setBounds(377, 42, 72, 37);
+		contentPane.add(establishmentMenu);
+		JLabel categoryMenu = new JLabel("");
+		categoryMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   ManageCategories manageCat=new ManageCategories(employee);
+			   setVisible(false);
+			   manageCat.setVisible(true);
+			}
+		});
+		categoryMenu.setBounds(453, 42, 80, 38);
+		contentPane.add(categoryMenu);
+		
+		JLabel employeeMenu = new JLabel("");
+		employeeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionEmployees gestionEmp =new GestionEmployees(employee);
+				setVisible(false);
+				gestionEmp.setVisible(true);
+			}
+		});
+		employeeMenu.setBounds(540, 42, 72, 37);
+		contentPane.add(employeeMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAdmin statisticAdm=new StatisticAdmin(employee);
+				setVisible(false);
+				statisticAdm.setVisible(true);
+			}
+		});
+		statisticMenu.setBounds(622, 42, 72, 37);
+		contentPane.add(statisticMenu);
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			listClaims listClaim=new listClaims(employee);
+			setVisible(false);
+			listClaim.setVisible(true);
+			
+			}
+		});
+		claimMenu.setBounds(704, 42, 80, 37);
+		contentPane.add(claimMenu);
+		
+		JLabel profil = new JLabel("");
 		profil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,17 +152,12 @@ public class listClaims extends JFrame {
 		profil.setBounds(818, 11, 30, 35);
 		contentPane.add(profil);
 		
-		JLabel logout = new JLabel("New label");
+		JLabel logout = new JLabel("");
 		logout.setBounds(861, 11, 23, 35);
 		contentPane.add(logout);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 894, 601);
-		lblNewLabel.setIcon(new ImageIcon(listClaims.class.getResource("/edu/esprit/image/ClaimsAdmin.jpg")));
-		contentPane.add(lblNewLabel);
-		
-		JLabel showClaim = new JLabel("New label");
-		showClaim.addMouseListener(new MouseAdapter() {
+		JLabel showClaim_1 = new JLabel("");
+		showClaim_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			
@@ -118,47 +181,13 @@ public class listClaims extends JFrame {
 			
 			}
 		});
-		showClaim.setBounds(386, 528, 118, 42);
-		contentPane.add(showClaim);
+		showClaim_1.setBounds(386, 528, 118, 42);
+		contentPane.add(showClaim_1);
 		
-		JLabel Home = new JLabel("New label");
-		Home.setBounds(289, 39, 85, 49);
-		contentPane.add(Home);
-		
-		JLabel Establishment = new JLabel("New label");
-		Establishment.setBounds(378, 39, 79, 49);
-		contentPane.add(Establishment);
-		
-		JLabel Category = new JLabel("New label");
-		Category.setBounds(455, 39, 85, 49);
-		contentPane.add(Category);
-		
-		JLabel Employee = new JLabel("New label");
-		Employee.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				new GestionEmployees(employee).setVisible(true);
-			}
-		});
-		Employee.setBounds(540, 39, 85, 49);
-		contentPane.add(Employee);
-		
-		JLabel statistic = new JLabel("New label");
-		statistic.setBounds(624, 42, 79, 46);
-		contentPane.add(statistic);
-		
-		JLabel Claim = new JLabel("New label");
-		Claim.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				new listClaims(employee).setVisible(true);
-				
-			}
-		});
-		Claim.setBounds(705, 39, 85, 49);
-		contentPane.add(Claim);
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(0, 0, 894, 601);
+		lblNewLabel.setIcon(new ImageIcon(listClaims.class.getResource("/edu/esprit/image/ClaimsAdmin.jpg")));
+		contentPane.add(lblNewLabel);
 		initDataBindings();
 	}
 	protected void initDataBindings() {

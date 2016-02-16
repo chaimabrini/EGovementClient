@@ -164,6 +164,19 @@ public class AddCategory extends JFrame {
 		statisticMenu.setBounds(622, 42, 72, 37);
 		contentPane.add(statisticMenu);
 		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			listClaims listClaim=new listClaims(employee);
+			setVisible(false);
+			listClaim.setVisible(true);
+			
+			}
+		});
+		claimMenu.setBounds(703, 42, 80, 37);
+		contentPane.add(claimMenu);
+		
 		JLabel lblBackgroundimage = new JLabel("");
 		lblBackgroundimage.setIcon(new ImageIcon(AddCategory.class.getResource("/edu/esprit/image/AddCategory.jpg")));
 		lblBackgroundimage.setBounds(0, 0, 893, 600);

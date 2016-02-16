@@ -140,6 +140,19 @@ public class ManageCategories extends JFrame {
 		contentPane.add(statisticMenu);
 		
 		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			listClaims listClaim=new listClaims(employee);
+			setVisible(false);
+			listClaim.setVisible(true);
+			
+			}
+		});
+		claimMenu.setBounds(703, 42, 80, 37);
+		contentPane.add(claimMenu);
+		
 		JLabel lblBackgroundimage = new JLabel("");
 		lblBackgroundimage.setIcon(new ImageIcon(ManageCategories.class.getResource("/edu/esprit/image/Categories.jpg")));
 		lblBackgroundimage.setBounds(0, 0, 893, 600);

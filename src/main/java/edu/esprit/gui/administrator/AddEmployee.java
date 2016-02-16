@@ -144,6 +144,19 @@ public class AddEmployee extends JFrame {
 		contentPane.add(statisticMenu);
 		
 		
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			listClaims listClaim=new listClaims(employee);
+			setVisible(false);
+			listClaim.setVisible(true);
+			
+			}
+		});
+		claimMenu.setBounds(703, 42, 80, 37);
+		contentPane.add(claimMenu);
+		
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(AddEmployee.class.getResource("/edu/esprit/image/AddEmployee.jpg")));

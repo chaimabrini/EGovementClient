@@ -103,6 +103,8 @@ public class HomeAdmin extends JFrame {
 			
 			}
 		});
+		claimMenu.setBounds(611, 120, 66, 37);
+		contentPane.add(claimMenu);
 		
 		JLabel statisticMenu = new JLabel("");
 		statisticMenu.addMouseListener(new MouseAdapter() {
@@ -115,8 +117,7 @@ public class HomeAdmin extends JFrame {
 		});
 		statisticMenu.setBounds(535, 120, 66, 37);
 		contentPane.add(statisticMenu);
-		claimMenu.setBounds(611, 120, 66, 37);
-		contentPane.add(claimMenu);
+		
 		
 		
 		JLabel imageLabel = new JLabel("");

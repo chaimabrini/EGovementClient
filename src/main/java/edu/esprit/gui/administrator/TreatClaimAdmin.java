@@ -65,7 +65,76 @@ public class TreatClaimAdmin extends JFrame {
 		Description.setBounds(261, 281, 431, 199);
 		contentPane.add(Description);
 		
-		JLabel Send = new JLabel("New label");
+		JLabel homeMenu = new JLabel("");
+		homeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomeAdmin homeA=new HomeAdmin(employee);
+				setVisible(false);
+				homeA.setVisible(true);
+			}
+		});
+		homeMenu.setBounds(284, 42, 89, 37);
+		contentPane.add(homeMenu);
+		
+		JLabel establishmentMenu = new JLabel("");
+		establishmentMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		establishmentMenu.setBounds(377, 42, 72, 37);
+		contentPane.add(establishmentMenu);
+		JLabel categoryMenu = new JLabel("");
+		categoryMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   ManageCategories manageCat=new ManageCategories(employee);
+			   setVisible(false);
+			   manageCat.setVisible(true);
+			}
+		});
+		categoryMenu.setBounds(453, 42, 80, 38);
+		contentPane.add(categoryMenu);
+		
+		JLabel employeeMenu = new JLabel("");
+		employeeMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionEmployees gestionEmp =new GestionEmployees(employee);
+				setVisible(false);
+				gestionEmp.setVisible(true);
+			}
+		});
+		employeeMenu.setBounds(540, 42, 72, 37);
+		contentPane.add(employeeMenu);
+		
+		JLabel statisticMenu = new JLabel("");
+		statisticMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StatisticAdmin statisticAdm=new StatisticAdmin(employee);
+				setVisible(false);
+				statisticAdm.setVisible(true);
+			}
+		});
+		statisticMenu.setBounds(622, 42, 72, 37);
+		contentPane.add(statisticMenu);
+		JLabel claimMenu = new JLabel("");
+		claimMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			listClaims listClaim=new listClaims(employee);
+			setVisible(false);
+			listClaim.setVisible(true);
+			
+			}
+		});
+		claimMenu.setBounds(704, 42, 80, 37);
+		contentPane.add(claimMenu);
+		
+		
+		JLabel Send = new JLabel("");
 		Send.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -79,7 +148,7 @@ public class TreatClaimAdmin extends JFrame {
 		Send.setBounds(320, 504, 120, 34);
 		contentPane.add(Send);
 		
-		JLabel Cancel = new JLabel("New label");
+		JLabel Cancel = new JLabel("");
 		Cancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -91,35 +160,11 @@ public class TreatClaimAdmin extends JFrame {
 		Cancel.setBounds(511, 498, 120, 40);
 		contentPane.add(Cancel);
 		
-		JLabel Home = new JLabel("New label");
-		Home.setBounds(282, 39, 85, 49);
-		contentPane.add(Home);
-		
-		JLabel Establishment = new JLabel("New label");
-		Establishment.setBounds(371, 39, 79, 49);
-		contentPane.add(Establishment);
-		
-		JLabel Category = new JLabel("New label");
-		Category.setBounds(448, 39, 85, 49);
-		contentPane.add(Category);
-		
-		JLabel Employee = new JLabel("New label");
-		Employee.setBounds(533, 39, 85, 49);
-		contentPane.add(Employee);
-		
-		JLabel Statistic = new JLabel("New label");
-		Statistic.setBounds(617, 42, 79, 46);
-		contentPane.add(Statistic);
-		
-		JLabel Claim = new JLabel("New label");
-		Claim.setBounds(698, 39, 85, 49);
-		contentPane.add(Claim);
-		
-		JLabel profil = new JLabel("New label");
+		JLabel profil = new JLabel("");
 		profil.setBounds(811, 11, 30, 35);
 		contentPane.add(profil);
 		
-		JLabel logout = new JLabel("New label");
+		JLabel logout = new JLabel("");
 		logout.setBounds(861, 11, 23, 35);
 		contentPane.add(logout);
 		

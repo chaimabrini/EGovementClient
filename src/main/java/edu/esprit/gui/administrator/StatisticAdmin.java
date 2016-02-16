@@ -206,6 +206,20 @@ public class StatisticAdmin extends JFrame {
 			statisticMenu.setBounds(622, 42, 72, 37);
 			contentPane.add(statisticMenu);
 		 
+			
+			JLabel claimMenu = new JLabel("");
+			claimMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+				listClaims listClaim=new listClaims(employee);
+				setVisible(false);
+				listClaim.setVisible(true);
+				
+				}
+			});
+			claimMenu.setBounds(703, 42, 80, 37);
+			contentPane.add(claimMenu);
+			
 		lblBackgroundimage = new JLabel("");
 		lblBackgroundimage.setIcon(new ImageIcon(StatisticAdmin.class.getResource("/edu/esprit/image/statisticAdmin.jpg")));
 		lblBackgroundimage.setBounds(0, 0, 893, 600);
